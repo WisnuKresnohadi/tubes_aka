@@ -7,7 +7,7 @@ public class Array1 {
 
     private static int[] loadArray() {
         List<Integer> list = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader("6ribu.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("5ribu.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 list.add(Integer.parseInt(line.trim()));

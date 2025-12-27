@@ -1,59 +1,57 @@
 public class MergeSort {
+    void merge(int[] a, int left, int mid, int right) {
 
-    // Merges two subarrays of a[]
-    void merge(int a[], int l, int m, int r)
-    {
-        int n1 = m - l + 1;
-        int n2 = r - m;
+        int leftLength = mid - left + 1;
+        int rightLength = right - mid;
 
-        int L[] = new int[n1];
-        int R[] = new int[n2];
+        
+        int[] leftArray = new int[leftLength];
+        int[] rightArray = new int[rightLength];
 
-        for (int i = 0; i < n1; ++i)
-            L[i] = a[l + i];
+        for (int i = 0; i < leftLength; i++) {
+            leftArray[i] = a[left + i];
+        }
 
-        for (int j = 0; j < n2; ++j)
-            R[j] = a[m + 1 + j];
+        for (int j = 0; j < rightLength; j++) {
+            rightArray[j] = a[mid + 1 + j];
+        }
 
-        int i = 0, j = 0;
-        int k = l;
+        int i = 0; 
+        int j = 0; 
+        int k = left; 
 
-        while (i < n1 && j < n2) {
-            if (L[i] <= R[j]) {
-                a[k] = L[i];
+        while (i < leftLength && j < rightLength) {
+            if (leftArray[i] <= rightArray[j]) {
+                a[k] = leftArray[i];
                 i++;
             } else {
-                a[k] = R[j];
+                a[k] = rightArray[j];
                 j++;
             }
             k++;
         }
-
-        while (i < n1) {
-            a[k] = L[i];
+        while (i < leftLength) {
+            a[k] = leftArray[i];
             i++;
             k++;
         }
-
-        while (j < n2) {
-            a[k] = R[j];
+        while (j < rightLength) {
+            a[k] = rightArray[j];
             j++;
             k++;
         }
     }
 
-    void sort(int a[], int l, int r)
-    {
-        if (l < r) {
-            int m = (l + r) / 2;
-            sort(a, l, m);
-            sort(a, m + 1, r);
-            merge(a, l, m, r);
+    void sort(int[] a, int left, int right) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+            sort(a, left, mid);
+            sort(a, mid + 1, right);
+            merge(a, left, mid, right);
         }
     }
 
-    public static void main(String args[])
-    {
+    public static void main(String[] args) {
         int[] a = Array1.data;
 
         long start = System.currentTimeMillis();
